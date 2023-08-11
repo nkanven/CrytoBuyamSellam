@@ -10,7 +10,7 @@ client = Client(os.environ.get("BINANCE_API_KEY"), os.environ.get("BINANE_API_SE
 # get market depth
 depth = client.get_order_book(symbol='BTCUSDT')
 
-pprint.pprint(depth)
+# pprint.pprint(depth)
 
 # get all symbol prices
 prices = client.get_all_tickers()
@@ -19,4 +19,4 @@ prices = client.get_all_tickers()
 # get a deposit address for BTC
 address = client.get_deposit_address(coin='BTC')
 
-print(address)
+# print(address)

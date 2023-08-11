@@ -39,3 +39,5 @@ class CryptoExchanges(WsbookBinance, WsbookKraken):
 
     def start(self):
         self.b_connect(self.arbitrage_watcher, self.on_close)
+
+
