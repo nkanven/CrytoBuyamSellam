@@ -27,6 +27,7 @@ class CryptoExchanges(WsbookBinance, WsbookKraken):
                         "Buy {:.5f} on Kraken, Sell at {:.5f} on Binance for a {:.2f}% potential profit".format(
                             float(k_prices[0]), float(b_prices[1]), ratios
                             )
+
                         )
                 notify(text)
 
