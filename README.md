@@ -1,4 +1,4 @@
-# MultiCryptoExchangeArbitrageTrading
+# Crypto Buyam Sellam
 
 # Multi Crypto Exchange Arbitrage Trading
 
