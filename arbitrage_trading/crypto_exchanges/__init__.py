@@ -23,10 +23,13 @@ class CryptoExchanges(WsbookBinance, WsbookKraken):
             print(t_text)
 
             if ratios >= 1.5:
-                text = f"Arbitrage opportunity between Kraken and Binance. Buy {k_prices[0]} on Kraken, Sell at {b_prices[1]} on Binance"
+                text = ("Arbitrage opportunity between Kraken and Binance. "
+                        "Buy {:.5f} on Kraken, Sell at {:.5f} on Binance for a {:.2f}% potential profit".format(
+                            float(k_prices[0]), float(b_prices[1]), ratios
+                            )
+                        )
                 notify(text)
 
-            notify(t_text)
         except Exception as e:
             print(str(e))
 
