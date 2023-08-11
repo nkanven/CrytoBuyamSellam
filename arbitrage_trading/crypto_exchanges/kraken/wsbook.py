@@ -4,10 +4,9 @@
 
 import sys
 import json
-import signal
 from websocket import create_connection
 
-import kraken
+from arbitrage_trading.crypto_exchanges import kraken
 
 
 class WsbookKraken:
@@ -27,7 +26,7 @@ class WsbookKraken:
                                                                           "symbol": self.api_symbol,
                                                                           "token": kraken.get_websocket_token()}
 
-        self.connect()
+        self.k_connect()
         self.send()
 
     def alarmfunction(self, signalnumber, frame):
@@ -64,7 +63,7 @@ class WsbookKraken:
 
     # signal.signal(signal.SIGABRT, alarmfunction)
 
-    def connect(self):
+    def k_connect(self):
         try:
             self.ws = create_connection(self.api_domain)
         except Exception as error:

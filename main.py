@@ -1,6 +1,5 @@
 import sys
-from kraken.wsbook import WsbookKraken
-from binance_exchange.wsbook import WsbookBinance
+from arbitrage_trading.crypto_exchanges import CryptoExchanges
 
 
 print(sys.argv)
@@ -9,9 +8,9 @@ if len(sys.argv) < 3:
     print("Example: %s xbt/usd 10" % sys.argv[0])
     sys.exit(1)
 
-websock = WsbookKraken(sys.argv)
-bwebsocm = WsbookBinance()
+crypto_exchage = CryptoExchanges(sys.argv)
+crypto_exchage.start()
 
-while True:
-    print("Kraken ", list(websock.get_data())[0])
-    print("Binance", bwebsocm.connect())
+# while True:
+#     print("Kraken ", list(websock.get_data())[0])
+#     print("Binance", )

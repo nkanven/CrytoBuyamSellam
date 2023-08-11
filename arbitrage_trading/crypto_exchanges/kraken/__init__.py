@@ -31,8 +31,9 @@ def get_websocket_token():
 
     #print(os.environ.get("KRAKEN_API_KEY"), os.environ.get("KRAKEN_API_PRIVATE"))
 
+    print(json.loads(api_response))
     token = json.loads(api_response)['result']['token']
-    #print(token)
+    print(token)
 
     # Output API response
-    return json.loads(api_response)['result']['token']
+    return token
