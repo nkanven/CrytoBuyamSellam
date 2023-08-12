@@ -1,6 +1,15 @@
 import sys
 from arbitrage_trading.crypto_exchanges import CryptoExchanges
+from arbitrage_trading.crypto_exchanges.kraken import *
+from arbitrage_trading.crypto_exchanges.kucoin import *
 
+print(client.get_account_summary_info())
+exit()
+
+# get_account_balance()
+# get_deposit_method("ETH")
+# get_address("ETH", assets_method_mapping["ETH"])
+# exit()
 
 print(sys.argv)
 if len(sys.argv) < 3:
