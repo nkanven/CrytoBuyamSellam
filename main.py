@@ -4,7 +4,7 @@ from arbitrage_trading.crypto_exchanges.kraken import *
 from arbitrage_trading.crypto_exchanges.kucoin import *
 
 print(client.get_account_summary_info())
-exit()
+# exit(11)
 
 # get_account_balance()
 # get_deposit_method("ETH")
