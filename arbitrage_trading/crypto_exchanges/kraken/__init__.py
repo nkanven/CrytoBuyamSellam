@@ -48,7 +48,7 @@ def get_websocket_token():
     api_request.add_header('API-Sign', api_signature)
     api_response = request.urlopen(api_request).read().decode()
 
-    # print(os.environ.get("KRAKEN_API_KEY"), os.environ.get("KRAKEN_API_PRIVATE"))
+    print(os.environ.get("KRAKEN_API_KEY"), os.environ.get("KRAKEN_API_PRIVATE"))
 
     print(json.loads(api_response))
     token = json.loads(api_response)['result']['token']

@@ -2,12 +2,13 @@ import json
 from arbitrage_trading.crypto_exchanges.kraken.wsbook import WsbookKraken
 from arbitrage_trading.crypto_exchanges.binance.wsbook import WsbookBinance
 from arbitrage_trading.utils import notify
-
+from models import Database
 
 class CryptoExchanges(WsbookBinance, WsbookKraken):
     def __init__(self, args):
         WsbookKraken.__init__(self, args)
         WsbookBinance.__init__(self)
+        self.database = Database()
 
     def arbitrage_watcher(self, ws, data):
         try:
@@ -38,6 +39,6 @@ class CryptoExchanges(WsbookBinance, WsbookKraken):
         print("### Closed ###")
 
     def start(self):
-        self.b_connect(self.arbitrage_watcher, self.on_close)
-
+        # self.b_connect(self.arbitrage_watcher, self.on_close)
+        self.database.get_all_distinct_assets()
 

@@ -6,3 +6,6 @@ rel==0.4.9
 setuptools==65.5.1
 websocket-client==1.6.1
 wheel==0.38.4
+mysql-connector-python~=8.1.0
+requests~=2.31.0
+XlsxWriter~=3.1.2
