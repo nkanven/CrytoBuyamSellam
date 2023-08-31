@@ -1,5 +1,6 @@
 import sys
 from arbitrage_trading.crypto_exchanges import CryptoExchanges
+from arbitrage_trading import triangular_arbitrage
 from arbitrage_trading.crypto_exchanges.kraken import *
 from arbitrage_trading.crypto_exchanges.kucoin import *
 
@@ -17,6 +18,8 @@ if len(sys.argv) < 3:
     print("Example: %s xbt/usd 10" % sys.argv[0])
     sys.exit(1)
 
+triangular_arbitrage("usdt", "eth", "btc")
+exit()
 crypto_exchage = CryptoExchanges(sys.argv)
 crypto_exchage.start()
 

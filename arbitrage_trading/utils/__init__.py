@@ -23,7 +23,7 @@ def create_xlsx(file_name, heads, contents):
     # Add a bold format to use to highlight cells.
     bold = workbook.add_format({'bold': 1})
     # Adjust the column width.
-    worksheet.set_column(1, 1, 35)
+    worksheet.set_column(0, 9, 15)
     i = 0
     row = 1
     col = 0

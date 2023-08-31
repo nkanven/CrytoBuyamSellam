@@ -4,10 +4,11 @@ from arbitrage_trading.crypto_exchanges.binance.wsbook import WsbookBinance
 from arbitrage_trading.utils import notify
 from models import Database
 
+
 class CryptoExchanges(WsbookBinance, WsbookKraken):
     def __init__(self, args):
         WsbookKraken.__init__(self, args)
-        WsbookBinance.__init__(self)
+        WsbookBinance.__init__(self, "btcusdt")
         self.database = Database()
 
     def arbitrage_watcher(self, ws, data):
@@ -26,10 +27,10 @@ class CryptoExchanges(WsbookBinance, WsbookKraken):
             if ratios >= 1.5:
                 text = ("Arbitrage opportunity between Kraken and Binance. "
                         "Buy {:.5f} on Kraken, Sell at {:.5f} on Binance for a {:.2f}% potential profit".format(
-                            float(k_prices[0]), float(b_prices[1]), ratios
-                            )
+                    float(k_prices[0]), float(b_prices[1]), ratios
+                )
 
-                        )
+                )
                 notify(text)
 
         except Exception as e:
@@ -39,6 +40,5 @@ class CryptoExchanges(WsbookBinance, WsbookKraken):
         print("### Closed ###")
 
     def start(self):
-        # self.b_connect(self.arbitrage_watcher, self.on_close)
+        self.b_connect(self.arbitrage_watcher, self.on_close)
         self.database.get_all_distinct_assets()
-
