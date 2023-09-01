@@ -36,17 +36,20 @@ def build_trading_pairs(*args) -> list:
     return pairs
 
 
-def arbitrage_paths(pairs_trio, pairs_info, path=1):
+def arbitrage_paths(pairs_trio, pairs_info):
     print(pairs_trio)
-    if path == 1:
-        cross_rate = (1 / float(pairs_info[pairs_trio[0]][1][0])) * float(pairs_info[pairs_trio[1]][0][0]) * float(pairs_info[pairs_trio[2]][0][0])
-        _rate = 1 + float(pairs_info[pairs_trio[0]][3]) + float(pairs_info[pairs_trio[1]][2]) + float(pairs_info[pairs_trio[2]][2])
-    else:
-        cross_rate = (1 / float(pairs_info[pairs_trio[0]][1][0])) * (1 / float(pairs_info[pairs_trio[1]][1][0])) * float(pairs_info[pairs_trio[2]][0][0])
-        _rate = 1 + float(pairs_info[pairs_trio[0]][3]) + float(pairs_info[pairs_trio[1]][3]) + float(
-            pairs_info[pairs_trio[2]][2])
+    trading_value = float(pairs_info[pairs_trio[1]][1][0])
+    base_price = (1 / float(pairs_info[pairs_trio[0]][1][0]))
+    _rate = 1 + float(pairs_info[pairs_trio[0]][3]) + float(pairs_info[pairs_trio[1]][3]) + float(
+        pairs_info[pairs_trio[2]][2])
+    cross_rate = (1 / float(pairs_info[pairs_trio[0]][1][0]) * (1 / float(pairs_info[pairs_trio[1]][1][0]))) * float(
+        pairs_info[pairs_trio[2]][0][0])
+    # cross_rate = (1 / 18402.5) * (1 / 0.004102) * 81.61
+    # print(f"-1 {cross_rate:.7f} Implied value: {implied_value}, Trading value: {trading_value}")
+    if _rate > cross_rate:
+        cross_rate = (1 / float(pairs_info[pairs_trio[2]][1][0])) * float(pairs_info[pairs_trio[1]][0][0]) * float(pairs_info[pairs_trio[0]][0][0])
 
-    profit = 1 - (float(pairs_info[pairs_trio[1]][0][0]) * float(pairs_info[pairs_trio[2]][0][0]))
+    profit = base_price - cross_rate
 
     return str(cross_rate), _rate, profit
 
@@ -63,10 +66,6 @@ def compute_triangular_arbitrage_opportinuty(pairs_info):
             trade_order[1] = key
         else:
             trade_order[2] = key
-
-    print(arbitrage_paths(trade_order, pairs_info))
-
-    trade_order.reverse()
 
     print(arbitrage_paths(trade_order, pairs_info))
 
